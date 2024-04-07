@@ -4,7 +4,7 @@
 .*
 webpack.config.js
 package-lock.json
-package.json
+# package.json
 config.js
 eslintrc.js
 gitignore

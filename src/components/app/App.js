@@ -1,17 +1,17 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import FormTextExample from '../parametri_iniziali/parametri_iniziali';
+import ParametriIniziali from '../parametri_iniziali/parametri_iniziali';
 
 function App() {
 	
   return (
-    <div className = "app">
+    <div className = "w-75 m-auto">
       <header className = "header">
-        <h1>Calcolo sezione dei cavi elettrici</h1>
+        <h1 className = 'mt-5'>Calcolo sezione dei cavi elettrici</h1>
       </header>
       <main>
-        <FormTextExample/>
+        <ParametriIniziali/>
       </main>
     </div>
   );
