@@ -1,0 +1,9 @@
+.app {
+	width: 1180px;
+	margin: 50px auto;
+	border: 1px solid #000;
+}
+
+.header {
+	text-align: center;
+}
