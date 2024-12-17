@@ -1,10 +1,57 @@
-.app {
-	max-width: 1180px;
-	width: 90%;
-	margin: 50px auto;
-	border: 1px solid #000;
+input, select  {
+	font-weight: 700 !important;
+}
+._container {
+	max-width: 768px;
+	width: 99vw;
+	margin: 0 auto;
 }
 
 .header {
-	text-align: center;
+	padding: 5px;
+	background-color: #f0f8ff;
+	color: #24486c; /* Blu scuro */
+  font-size: 1rem;
+  font-weight: bold;
 }
+
+h2 {
+  color: #336699 !important; /* Blu medio */
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+label {
+	color: grey !important;
+}
+
+.result {
+	color: #DC143C;
+}
+
+
+._navbar {
+	max-width: 768px;
+	margin: 0 auto;
+}
+
+._navbar button {
+	width: 50%;
+	padding: 8px;
+	background-color: #f0f8ff;
+	color: #24486c; /* Blu scuro */
+	border: none;
+	font-size: 1.3rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+.btn-prev {
+	border-right: 1px solid #24486c !important;
+}
+
+._navbar button:active {
+	background-color:  #bedffc;
+}
+
+

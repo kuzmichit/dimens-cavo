@@ -1,0 +1,6 @@
+.parametri-iniziali-container {
+	max-height: 75vh;
+	padding-left: 30px;
+	padding-right: 30px;
+	overflow-y: scroll;
+}
