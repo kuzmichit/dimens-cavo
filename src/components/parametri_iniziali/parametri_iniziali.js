@@ -5,131 +5,112 @@ import { useEffect, useState } from 'react';
 
 const ParametriIniziali = () => {
 
-  const [Unom, setUnom] = useState(0)
-  const [lunghezza, setLunghezza] = useState('')
-  const [potenza, setPotenza] = useState('');
-  const [fattorePotenza, setFattorePotenza] = useState('');
-  const [Uammissibile, setUammissibile] = useState('');
+  const [formInputs, setFormInputs] = useState( {
+    Unom: '230',
+    lunghezza: '11',
+    potenza: '3600',
+    fattorePotenza: 1,
+    Uammissibile: 4
+  } )
 
   const IsNumber = (value) => {
-    let regExpIsNotNumber = (/\D/g);
+    let regExpIsNumber = /^(0{1}(\.\d*)?|\d+(\.\d*)?)$/;
     
-    return regExpIsNotNumber.test(value);
+    return regExpIsNumber.test(value);
   };
 
-  const parametriFormHandler = (e) => {
-    let value = e.target.value;
-    if(IsNumber(value) ) return ;
-    console.log(e.target.id);
+  const formInputsHandler = (e) => {
+    const {name, value} = e.target;
+    if(!IsNumber(value) && value !== '') return ;
+    if(value > 1 && name === 'fattorePotenza') return;
+    if(value > 4 && name === 'Uammissibile') {
+      alert('Il valore massimo è 4%')
+      
+      return;
+    }
+    console.log(formInputs['Unom'] );
+    setFormInputs( (prevState) => ( { ...prevState, [name]: value } ) );
+  };
 
-    switch(e.target.id) {
-    case 'Unom' : setUnom(value); break; 
-    case 'lunghezza' : setLunghezza(value); break;
-    case 'potenza' : setPotenza(value); break;
-    case 'fattore_potenza' : setFattorePotenza(value); break;
-    case 'tensione_ammissibile' : setUammissibile(value); break;
+  const Risultato = () => {
+    let correnteNominale = 0;
+
+    const calcolatoreCorrente = () => {
+      const {Unom} = formInputs
+      if(formInputs.lunghezza && formInputs.potenza && formInputs.fattorePotenza && formInputs.Uammissibile) {
+        if(Unom === '230') correnteNominale = formInputs.potenza / (Unom * formInputs.fattorePotenza) 
+        if(Unom === '400') correnteNominale = formInputs.potenza / (Unom * formInputs.fattorePotenza * Math.sqrt(3) )
+        correnteNominale = Math.round(correnteNominale * 100) / 100
+        // console.log(correnteNominale, 'hello', 45);
+      }
+      else correnteNominale = 'Non valida'
     }
 
-  };
+    calcolatoreCorrente();
 
-  const inputFieldHandler = (e) => {
-    let value = e.target.value;
-    
-    return IsNumber(value); 
-  }
-
-  const onInputLunghezza = (e) => {
-    if(inputFieldHandler(e) ) setLunghezza(value) 
-  }
-
-  const onInputPotenza = (e) => {
-    if(inputFieldHandler(e) ) setPotenza(value) 
-  }
-
-  const onInputFattorePotenza = (e) => {
-    if(inputFieldHandler(e) ) setFattorePotenza(value) 
-  }
-
-  const onInputUammissibile = (e) => { 
-    if(inputFieldHandler(e) ) setUammissibile(value) 
-  }
-	
-  const calcolatoreCorrente = (params) => {
-		
+    return ( 
+      <h3 className = "result text-center">Il carico della linea è 
+        <span className = 'text-primary'> {correnteNominale} </span>A
+      </h3>
+    )
   }
   
   return (
     <div className = 'parametri-iniziali-container'>
       <h2 className = ''>Parametri iniziali</h2>
-      <Form className = '' id = 'parametri_iniziali'
-        onChange = { parametriFormHandler }> 
+      <Form className = '' id = 'parametri_iniziali'> 
         <Form.Group className = "mb-3 mt-3  w-100">
           <Form.Label className = 'ps-2 '>Tensione di linea (volt)</Form.Label>
           <Form.Select 
             aria-label = "La tensione di linea (volts)"
-            id = 'Unom'>
-            <option value = "230">230 V</option>
-            <option value = "400">400 V</option>
+            name = 'Unom'
+            onChange = { formInputsHandler }>
+            <option name = '230' value = "230">230 V</option>
+            <option name = '400' value = "400">400 V</option>
           </Form.Select>
         </Form.Group>
-        <Form.Group className = "mb-3 mt-1  w-100 controlId=''">
+        <Form.Group className = "mb-3 mt-1  w-100">
           <Form.Label className = 'ps-2 '>Lunghezza di linea (m)</Form.Label>
           <Form.Control type = "input"
-            id = "lunghezza"
+            name = "lunghezza"
             required
-            value = { lunghezza }
-            onChange = { onInputLunghezza }
+            value = { formInputs.lunghezza }
+            onChange = { (e) => formInputsHandler(e) }
           />
         </Form.Group>
         <Form.Group className = "mb-3 mt-1  w-100">
           <Form.Label className = 'ps-2 '>Potenza elettrica del carico (watt)</Form.Label>
           <Form.Control type = "input"
-            id = 'potenza' 
+            name = 'potenza' 
             required
-            value = { potenza }
+            value = { formInputs.potenza }
+            onChange = { (e) => formInputsHandler(e) }
           />
         </Form.Group>
         <Form.Group className = "mb-3 mt-1  w-100">
           <Form.Label className = 'ps-2 '>Fattore di potenza (%)</Form.Label>
           <Form.Control type = "input"
+            name = 'fattorePotenza' 
             required
-            id = 'fattore_potenza'
-            value = { fattorePotenza }/>
+            value = { formInputs.fattorePotenza }
+            onChange = { (e) => formInputsHandler(e) }
+          />
         </Form.Group>
         <Form.Group className = "mb-3 mt-1  w-100">
           <Form.Label className = 'ps-2 '>Caduta di tensione ammissibile (%)</Form.Label>
           <Form.Control type = "input" 
+            max = { 4 }
             required
-            id = 'caduta_tensione'
-            value = { Uammissibile }
-
+            name = 'Uammissibile'
+            value = { formInputs.Uammissibile }
+            onChange = { (e) => formInputsHandler(e) }
           />
         </Form.Group>
       </Form>
-      <h3 className = "result ms-5">Il carico della linea è {lunghezza}A</h3>
+      <Risultato/>
     </div>
   );
+	
 }
 
 export default ParametriIniziali;
-
-// import Form from 'react-bootstrap/Form';
-
-// function FormTextExample() {
-//   return (
-//     <>
-//       <Form.Label htmlFor = "inputPassword5">Password</Form.Label>
-//       <Form.Control
-//         type = "password"
-//         id = "inputPassword5"
-//         aria-describedby = "passwordHelpBlock"
-//       />
-//       <Form.Text id = "passwordHelpBlock" muted>
-//         Your password must be 8-20 characters long, contain letters and numbers,
-//         and must not contain spaces, special characters, or emoji.
-//       </Form.Text>
-//     </>
-//   );
-// }
-
-// export default FormTextExample;

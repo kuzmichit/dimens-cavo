@@ -18,8 +18,8 @@ function App() {
         <ParametriIniziali
           current = { current }
           setCurrent = { setCurrent }/>
-        <TipoCavo/>
-        <TipoPosa/>{} 
+        {/*      <TipoCavo/>
+        <TipoPosa/>{}  */}
       </main>
       {/* <footer>
         <div className = "_navbar mt-3 fixed-bottom">
