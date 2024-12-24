@@ -17,9 +17,9 @@ const TipoPosa = () => {
           <Form.Select aria-label = "circuiti adiacenti" id = 'num-adiacenti'>
             <option value = "2">2</option>
             <option value = "3">3</option>
-            <option value = "4">3</option>
-            <option value = "5">3</option>
-            <option value = "6">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+            <option value = "6">6</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className = "mb-3 mt-5 w-75">
@@ -27,9 +27,7 @@ const TipoPosa = () => {
           <Form.Select aria-label = "temperatura__ammissibile" id = 'temperatura__ammissibile'>
             <option value = "30">30</option>
             <option value = "35">35</option>
-            <option value = "4">3</option>
-            <option value = "5">3</option>
-            <option value = "6">3</option>
+            <option value = "40">40</option>
           </Form.Select>
         </Form.Group>
       </Form>

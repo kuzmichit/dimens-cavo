@@ -24,9 +24,7 @@ const TipoCavo = () => {
           <Form.Select aria-label = "numero di conduttori attivi" id = 'conduttori'>
             <option value = "2">2</option>
             <option value = "3">3</option>
-            <option value = "4">3</option>
-            <option value = "5">3</option>
-            <option value = "6">3</option>
+            <option value = "4">4</option>
           </Form.Select>
         </Form.Group>
       </Form>
