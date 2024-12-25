@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import ParametriIniziali from '../parametri_iniziali/Parametri_iniziali';
+import ParametriIniziali from '../parametri_iniziali/parametri_iniziali';
 import TipoCavo from '../Tipo_cavo'
 import TipoPosa from '../Tipo_posa'
 import { useState } from 'react';
@@ -15,11 +15,11 @@ function App() {
         <h1 className = 'p-1  text-center fs-3'>Calcolo sezione dei cavi elettrici</h1>
       </header> */}
       <main className = 'main'>
-        {/*         <ParametriIniziali
+        { <ParametriIniziali
           current = { current }
-          setCurrent = { setCurrent }/> */}
-        {/*      <TipoCavo/>*/}
-        <TipoPosa/>{}  
+          setCurrent = { setCurrent }/> }
+        { <TipoCavo/>}
+        <TipoPosa/>
       </main>
       {/* <footer>
         <div className = "_navbar mt-3 fixed-bottom">

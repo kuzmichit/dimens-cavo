@@ -2,6 +2,7 @@ import './parametri_iniziali.css'
 
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
+import {correnteDImpiego, isNumber} from '../app/formule';
 
 const ParametriIniziali = () => {
 
@@ -10,47 +11,40 @@ const ParametriIniziali = () => {
     lunghezza: '11',
     potenza: '3600',
     fattorePotenza: 1,
-    Uammissibile: 4
+    Uammissibile: 4,
+    correnteDImpiego: 'Non valida'
   } )
-
-  const IsNumber = (value) => {
-    let regExpIsNumber = /^(0{1}(\.\d*)?|\d+(\.\d*)?)$/;
-    
-    return regExpIsNumber.test(value);
-  };
 
   const formInputsHandler = (e) => {
     const {name, value} = e.target;
-    if(!IsNumber(value) && value !== '') return ;
+    if(!isNumber(value) && value !== '') return ;
     if(value > 1 && name === 'fattorePotenza') return;
     if(value > 4 && name === 'Uammissibile') {
       alert('Il valore massimo è 4%')
       
       return;
     }
-    console.log(formInputs['Unom'] );
+
+    let timeout
+    clearTimeout(timeout);
+    timeout = setTimeout( () => calcolatoreCorrente( {...formInputs, [name]: value } ), 500);
     setFormInputs( (prevState) => ( { ...prevState, [name]: value } ) );
   };
+		
+  const calcolatoreCorrente = ( {lunghezza, potenza, Unom, Uammissibile, fattorePotenza} ) => {
 
-  const Risultato = () => {
-    let correnteNominale = 0;
-
-    const calcolatoreCorrente = () => {
-      const {Unom} = formInputs
-      if(formInputs.lunghezza && formInputs.potenza && formInputs.fattorePotenza && formInputs.Uammissibile) {
-        if(Unom === '230') correnteNominale = formInputs.potenza / (Unom * formInputs.fattorePotenza) 
-        if(Unom === '400') correnteNominale = formInputs.potenza / (Unom * formInputs.fattorePotenza * Math.sqrt(3) )
-        correnteNominale = Math.round(correnteNominale * 100) / 100
-        // console.log(correnteNominale, 'hello', 45);
-      }
-      else correnteNominale = 'Non valida'
+    if(lunghezza && potenza && fattorePotenza && Uammissibile) {
+      let correnteDImpiego = correnteDImpiego( {...formInputs, Unom} )
+      setFormInputs(prevState => ( {...prevState, correnteDImpiego} ) )
     }
 
-    calcolatoreCorrente();
-
+  }
+	
+  const RisultatoCorrente = () => {
+		
     return ( 
       <h3 className = "result text-center">Il carico della linea è 
-        <span className = 'text-primary'> {correnteNominale} </span>A
+        <span className = 'text-primary'> {formInputs.correnteDImpiego} </span>A
       </h3>
     )
   }
@@ -106,8 +100,8 @@ const ParametriIniziali = () => {
             onChange = { (e) => formInputsHandler(e) }
           />
         </Form.Group>
+        <RisultatoCorrente/>
       </Form>
-      <Risultato/>
     </div>
   );
 	
