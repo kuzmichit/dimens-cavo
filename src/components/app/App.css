@@ -49,8 +49,14 @@ label {
 	border-right: 1px solid #24486c !important;
 }
 
+
+._navbar button.active {
+	background-color: #d5e9fb;
+} 
+
 ._navbar button:active {
-	background-color:  #bedffc;
+	background-color:  #a2d3ff;
 }
+
 
 
