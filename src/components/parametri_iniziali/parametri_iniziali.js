@@ -2,7 +2,7 @@ import './parametri_iniziali.css'
 
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
-import {correnteDImpiego, isNumber} from '../app/formule';
+import {calcCorrenteDImpiego, isNumber} from '../formule';
 
 const ParametriIniziali = () => {
 
@@ -24,7 +24,7 @@ const ParametriIniziali = () => {
       
       return;
     }
-
+		
     let timeout
     clearTimeout(timeout);
     timeout = setTimeout( () => calcolatoreCorrente( {...formInputs, [name]: value } ), 500);
@@ -34,7 +34,8 @@ const ParametriIniziali = () => {
   const calcolatoreCorrente = ( {lunghezza, potenza, Unom, Uammissibile, fattorePotenza} ) => {
 
     if(lunghezza && potenza && fattorePotenza && Uammissibile) {
-      let correnteDImpiego = correnteDImpiego( {...formInputs, Unom} )
+      let correnteDImpiego = calcCorrenteDImpiego(potenza, Unom, fattorePotenza)
+
       setFormInputs(prevState => ( {...prevState, correnteDImpiego} ) )
     }
 
