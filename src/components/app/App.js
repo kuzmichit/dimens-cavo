@@ -20,7 +20,11 @@ function App() {
   } )
 	
   // Array dei componenti delle pagine
-  const pages = [ <ParametriIniziali key = { 'parametriIniziali' }	formData = { formData }/>,
+  const pages = [ 
+    <ParametriIniziali key = { 'parametriIniziali' }	
+      formData = { formData } 
+      setFormData = { setFormData } 
+    />,
     <TipoCavo key = { 'tipoCavo' }/>,
     <TipoPosa key = { 'tipoPosa' }/>]
 	
@@ -39,7 +43,8 @@ function App() {
           formData = { formData }
           currentPage = { currentPage }
           setCurrentPage = { setCurrentPage }
-          pagesLength = { pages.length } />
+          pagesLength = { pages.length }
+          correnteDImpiego = { formData.correnteDImpiego } />
       </footer>
     </div>
   );

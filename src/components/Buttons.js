@@ -4,7 +4,7 @@ const Buttons = (props) => {
 
   const btnNext = useRef(null);
   const btnPrev = useRef(null);
-  const {formData, currentPage, setCurrentPage, pagesLength} = props;
+  const {correnteDImpiego, currentPage, setCurrentPage, pagesLength} = props;
 
   const btnNextHandler= () => {
     if (currentPage < pagesLength - 1) {
@@ -18,9 +18,9 @@ const Buttons = (props) => {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  const btnNextActive = (currentPage < pagesLength-1) && correnteDImpiego !== 'Non valida' && correnteDImpiego !== 0
   const clazzBtnPrev = currentPage <= 0 ? 'btn-prev disabled = true' : 'btn-prev active'
-  const clazzBtnNext = currentPage >= pagesLength-1 ? 'btn-next disabled = true ' : 'btn-next active'
+  const clazzBtnNext = btnNextActive ? 'btn-next active' : 'btn-next disabled = true ' 
   
   return ( 	
     <div className = "_navbar mt-3 fixed-bottom">
