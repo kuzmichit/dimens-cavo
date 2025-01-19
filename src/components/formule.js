@@ -1,6 +1,6 @@
 //  # Le formule per calcolare diversi parametri per la scelta del cavo 
 
-export const arrotondamentoNumero = (num, digit = 100) => {
+const arrotondamentoNumero = (num, digit = 100) => {
   return Math.round(num * digit) / digit
 }
 
@@ -23,4 +23,14 @@ export const calcCorrenteDImpiego = (potenza, Unom, fattorePotenza) => {
 
 export const calcCDTunitaria = (Uammissibile, Unom) => {
   return (Uammissibile * Unom)/ 100 
+}
+
+export const calcoloSezioneDefinitiva = ( {Uammissibile, Unom, correnteDImpiego, lunghezza} )=> {
+	
+  const deltaV = (Uammissibile * Unom)/100
+  const u = (1000 * deltaV) / (correnteDImpiego * lunghezza) 
+
+  const Iz = Io * K1 * K2
+
+  const result = Iz >= correnteDImpiego
 }

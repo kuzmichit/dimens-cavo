@@ -12,12 +12,24 @@ function App() {
 
   const [formData, setFormData] = useState( {
     Unom: '230',
-    lunghezza: '',
+    lunghezza: '1',
     potenza: '3600',
     fattorePotenza: 1,
     Uammissibile: 4,
-    correnteDImpiego: 'Non valida'
+    correnteDImpiego: 'Non valida',
+    formazione: 'unipolare',
+    tipoIsolamento: 'EPR',
+    numeroConduttoriAttivi: 2,
+    tipoPosa: 'interrato',
+    numeroCircuitiAdiacenti: 1,
+    temperaturaAmmissibile: 30,
+    sezioneDefinitiva: 0
   } )
+
+  const selectChangeHandler = (e) => {
+    const {name, value} = e.target;
+    setFormData( (prevState) => ( { ...prevState, [name]: value } ) );
+  }
 	
   // Array dei componenti delle pagine
   const pages = [ 
@@ -25,8 +37,15 @@ function App() {
       formData = { formData } 
       setFormData = { setFormData } 
     />,
-    <TipoCavo key = { 'tipoCavo' }/>,
-    <TipoPosa key = { 'tipoPosa' }/>]
+    <TipoCavo key = { 'tipoCavo' }
+      formData = { formData } 
+      setFormData = { setFormData }
+      selectChangeHandler = { selectChangeHandler } />,
+    <TipoPosa key = { 'tipoPosa' }
+      formData = { formData } 
+      setFormData = { setFormData }
+      selectChangeHandler = { selectChangeHandler } 
+    />]
 	
   const [currentPage, setCurrentPage] = useState(0); // Indice della pagina corrente
 	

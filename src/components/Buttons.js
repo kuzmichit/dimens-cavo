@@ -6,8 +6,9 @@ const Buttons = (props) => {
   const btnPrev = useRef(null);
   const {correnteDImpiego, currentPage, setCurrentPage, pagesLength} = props;
 
+  const btnNextActive = (currentPage < pagesLength-1) && correnteDImpiego !== 'Non valida' && correnteDImpiego !== 0
   const btnNextHandler= () => {
-    if (currentPage < pagesLength - 1) {
+    if (btnNextActive) {
       setCurrentPage(currentPage + 1);
     }
 
@@ -18,7 +19,6 @@ const Buttons = (props) => {
       setCurrentPage(currentPage - 1);
     }
   };
-  const btnNextActive = (currentPage < pagesLength-1) && correnteDImpiego !== 'Non valida' && correnteDImpiego !== 0
   const clazzBtnPrev = currentPage <= 0 ? 'btn-prev disabled = true' : 'btn-prev active'
   const clazzBtnNext = btnNextActive ? 'btn-next active' : 'btn-next disabled = true ' 
   
