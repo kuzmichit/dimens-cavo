@@ -18,11 +18,6 @@ const TipoCavo = ( {formData, setFormData, selectChangeHandler} ) => {
     else setStateConduttoriAttivi(false)
   }
 
-  /*   const [stateConduttoriAttivi, setStateConduttoriAttivi] = useState(true);
-  useEffect( () => {
-    changeStateConduttoriAttivi(), [formData.formazione]
-  } ) */
-
   const formazioneChangeHandler = (e) => {
     selectChangeHandler(e);
     changeStateConduttoriAttivi(e)
@@ -59,7 +54,6 @@ const TipoCavo = ( {formData, setFormData, selectChangeHandler} ) => {
           >
             <option value = "2">2</option>
             <option value = "3">3</option>
-            <option value = "4">4</option>
           </Form.Select>
         </Form.Group>
       </Form>

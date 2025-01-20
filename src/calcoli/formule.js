@@ -25,12 +25,3 @@ export const calcCDTunitaria = (Uammissibile, Unom) => {
   return (Uammissibile * Unom)/ 100 
 }
 
-export const calcoloSezioneDefinitiva = ( {Uammissibile, Unom, correnteDImpiego, lunghezza} )=> {
-	
-  const deltaV = (Uammissibile * Unom)/100
-  const u = (1000 * deltaV) / (correnteDImpiego * lunghezza) 
-
-  const Iz = Io * K1 * K2
-
-  const result = Iz >= correnteDImpiego
-}

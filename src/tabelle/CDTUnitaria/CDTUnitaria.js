@@ -200,3 +200,4 @@ const CDTUnitaria = [
     'AC-3P cosφ=0.8': '0.136mV/A*m'
   }
 ]
+export default CDTUnitaria;

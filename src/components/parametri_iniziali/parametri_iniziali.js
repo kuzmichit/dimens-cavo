@@ -2,7 +2,7 @@ import './parametri_iniziali.css'
 
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
-import {calcCorrenteDImpiego, isNumber} from '../formule';
+import {calcCorrenteDImpiego, isNumber} from '../../calcoli/formule';
 
 const ParametriIniziali = ( {formData, setFormData} ) => {
 

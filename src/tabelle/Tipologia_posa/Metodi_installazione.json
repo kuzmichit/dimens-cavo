@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "descrizione": "con o senza guaina in tubi circolari entro muri isolanti",
+    "riferimentoInstallazione": "A"
+  },
+  {
+    "id": 3,
+    "descrizione": "senza guaina in tubi circolari su o distanziati da pareti",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 4,
+    "descrizione": "senza guaina in tubi non circolari su pareti",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 5,
+    "descrizione": "senza guaina in tubi annegati nella muratura",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 11,
+    "descrizione": "con o senza armatura su o distanziati da pareti",
+    "riferimentoInstallazione": "C"
+  },
+  {
+    "id": "11A",
+    "descrizione": "con o senza armatura fissati su soffitti",
+    "riferimentoInstallazione": "C"
+  },
+  {
+    "id": "11B",
+    "descrizione": "con o senza armatura distanziati da soffitti",
+    "riferimentoInstallazione": "C"
+  },
+  {
+    "id": 12,
+    "descrizione": "con o senza armatura su passerelle non perforate",
+    "riferimentoInstallazione": "C"
+  },
+  {
+    "id": 13,
+    "descrizione": "con o senza armatura su passerelle perforate",
+    "riferimentoInstallazione": "E"
+  },
+  {
+    "id": 14,
+    "descrizione": "con o senza armatura su mensole distanziati dalle pareti",
+    "riferimentoInstallazione": "E"
+  },
+  {
+    "id": 14,
+    "descrizione": "con guaina a contatto fra loro su mensole",
+    "riferimentoInstallazione": "F"
+  },
+  {
+    "id": 15,
+    "descrizione": "con o senza armatura fissati da collari",
+    "riferimentoInstallazione": "E"
+  },
+  {
+    "id": 16,
+    "descrizione": "con o senza armatura su passerelle a traversini",
+    "riferimentoInstallazione": "E"
+  },
+  {
+    "id": 17,
+    "descrizione": "con guaina sospesi a od incorporati in fili o corde",
+    "riferimentoInstallazione": "E"
+  },
+  {
+    "id": 18,
+    "descrizione": "conduttori nudi o cavi senza guaina su isolatori",
+    "riferimentoInstallazione": "G"
+  },
+  {
+    "id": 21,
+    "descrizione": "con guaina in cavità di strutture",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 22,
+    "descrizione": "senza guaina in tubi in cavità di strutture",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": "22A",
+    "descrizione": "con guaina in tubi in cavità di strutture",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 23,
+    "descrizione": "senza guaina in tubi non circolari in cavità di strutture",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 24,
+    "descrizione": "senza guaina in tubi non circolari annegati nella\n\t\t\t\t\t\t\t\tmuratura",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": "24A",
+    "descrizione": "con guaina in tubi non circolari annegati nella muratura",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 25,
+    "descrizione": "con guaina in controsoffitti o pavimenti sopraelevati",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 31,
+    "descrizione": "con guaina in canali orizzontali su pareti",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 32,
+    "descrizione": "con guaina in canali verticali su pareti",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 33,
+    "descrizione": "senza guaina in canali incassati nel pavimento",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 34,
+    "descrizione": "senza guaina in canali sospesi",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": "34A",
+    "descrizione": "con guaina in canali sospesi",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 41,
+    "descrizione": "senza guaina in tubi in cunicoli chiusi orizzontali o\n\t\t\t\t\t\t\t\tverticali",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 42,
+    "descrizione": "senza guaina in tubi in cunicoli ventilati in pavimento",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 43,
+    "descrizione": "con guaina in cunicoli aperti o ventilati",
+    "riferimentoInstallazione": "B"
+  },
+  {
+    "id": 52,
+    "descrizione": "con guaina in muratura senza protezione meccanica",
+    "riferimentoInstallazione": "C"
+  },
+  {
+    "id": 61,
+    "descrizione": "con guaina in tubi o cunicoli interrati",
+    "riferimentoInstallazione": "D"
+  },
+  {
+    "id": 62,
+    "descrizione": "con guaina interrati senza protezione meccanica",
+    "riferimentoInstallazione": "D"
+  },
+  {
+    "id": 72,
+    "descrizione": "senza guaina in canali provvisti di separatori",
+    "riferimentoInstallazione": "B"
+  }
+]

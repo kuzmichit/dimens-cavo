@@ -12,11 +12,12 @@ function App() {
 
   const [formData, setFormData] = useState( {
     Unom: '230',
-    lunghezza: '1',
+    lunghezza: '100',
     potenza: '3600',
     fattorePotenza: 1,
     Uammissibile: 4,
-    correnteDImpiego: 'Non valida',
+    correnteDImpiego: 15,
+    // correnteDImpiego: 'Non valida',
     formazione: 'unipolare',
     tipoIsolamento: 'EPR',
     numeroConduttoriAttivi: 2,
@@ -55,6 +56,7 @@ function App() {
         <h1 className = 'p-1  text-center fs-3'>Calcolo sezione dei cavi elettrici</h1>
       </header>
       <main className = 'main'>
+        {/* {pages[2]} */}
         {pages[currentPage]}
       </main>
       <footer>

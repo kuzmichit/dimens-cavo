@@ -1,6 +1,12 @@
 import Form from 'react-bootstrap/Form';
+import calcoloSezione from '../calcoli/calcolo_sezione'
 
 const TipoPosa = ( {formData, selectChangeHandler} ) => {
+	
+  const onBtnClick = () => {
+    calcoloSezione(formData); // Passiamo formData come argomento
+  };
+  
   return (
     <div className = "ms-5 mt-5">
       <h2 className = ''>Tipo di posa</h2>
@@ -38,7 +44,9 @@ const TipoPosa = ( {formData, selectChangeHandler} ) => {
           </Form.Select>
         </Form.Group>
         <div className = "d-grid mt-5">
-          {/* <button type = "button" className = "btn btn-info w-75">Calcolare la sezione</button> */}
+          <button type = "button" 
+            className = "btn btn-info w-75"
+            onClick = { onBtnClick }>Calcolare la sezione</button>
         </div>
       </Form>
       {<p className = 'fs-2'>La sezione consigliata da posare è <span className = 'text-danger fs-1'>{formData.sezioneDefinitiva} </span>mmq </p>}
