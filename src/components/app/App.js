@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ParametriIniziali from '../parametri_iniziali/Parametri_iniziali';
 import TipoCavo from '../Tipo_cavo';
-import TipoPosa from '../Tipo_posa';
+import TipoPosa from '../tipo_posa/Tipo_posa';
 import Buttons from '../Buttons';
 
 import { useState } from 'react';
@@ -21,8 +21,8 @@ function App() {
     formazione: 'unipolare',
     tipoIsolamento: 'EPR',
     numeroConduttoriAttivi: 2,
-    tipoPosa: 'interrato',
-    numeroCircuitiAdiacenti: 1,
+    tipoPosa: 'A',
+    numeroCircuitiAdiacenti: 3,
     temperaturaAmmissibile: 30,
     sezioneDefinitiva: 0
   } )
@@ -56,8 +56,8 @@ function App() {
         <h1 className = 'p-1  text-center fs-3'>Calcolo sezione dei cavi elettrici</h1>
       </header>
       <main className = 'main'>
-        {/* {pages[2]} */}
-        {pages[currentPage]}
+        {pages[2]}
+        {/* {pages[currentPage]} */}
       </main>
       <footer>
         <Buttons

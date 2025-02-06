@@ -1,11 +1,11 @@
 import CDTUnitaria from '../tabelle/CDTUnitaria/CDTUnitaria';
-import portataCavoIo from '../tabelle/Portata_cavo_Io/Portata_cavoIo.json';
+import tabellaPortataCavoIo from '../tabelle/Portata_cavo_Io/Portata_cavoIo';
+import tabellaFattoriInstallazione from '../tabelle/Fattore_installazione/Fattore_installazione';
 
 const calcoloSezione = (formData) => {
 
-  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa} = {...formData};
+  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa, numeroCircuitiAdiacenti} = {...formData};
 
-  console.log(formData);
   let sezioneAmmissibile = 0;
 
   const calcCDTammissibile = ()=> {
@@ -16,6 +16,7 @@ const calcoloSezione = (formData) => {
     return CDTammissibile;
   }
  
+  // La sezione che si ricava dalla tabella apposta usando la CDT unitaria calcolata in precedenza
   const getSezioneAmmissibile = () => {
     const CDTammissibile = calcCDTammissibile();
     const keyForCDTUnitaria = `AC-${numeroConduttoriAttivi}P cosφ=${fattorePotenza}`;
@@ -38,25 +39,40 @@ const calcoloSezione = (formData) => {
 
   }
 
-  const getCorrenteIo = (sezione) => {
+  const getCorrenteIo = ( {sezione} ) => {
+    // La sezione che abbiamo trovato prima 
+    let sezioneCalcolata = parseFloat(sezione);
     let correnteIo = null;
-    const portataCavoIo = portataCavoIo.slice(1, -1);
+    const copyPortataCavoIo = tabellaPortataCavoIo.slice(1, -1);
     const key = `${tipoPosa}-${tipoIsolamento}-${numeroConduttoriAttivi}`
+    // array delle correnti corrispondenti alla chiave 
+    let rigaCorrenteTrovataIo = copyPortataCavoIo.find(item => item[key] );
+    rigaCorrenteTrovataIo = rigaCorrenteTrovataIo[key];
+    const indexSezione = tabellaPortataCavoIo[0]['sezioni'].findIndex(item => item === sezioneCalcolata);
 
-    return correnteIo = portataCavoIo[key];
-
+    return correnteIo = rigaCorrenteTrovataIo[indexSezione];
   }
+
+  const getFattoreInstallazione = () => {
+    const fattoreInstallazione = tabellaFattoriInstallazione[numeroCircuitiAdiacenti]; debugger;
+
+    return fattoreInstallazione;
+  }
+
   const calcPortataLineaAmmissibile = () => {
     const sezioneAmmissibile = getSezioneAmmissibile();
-    const Io = getCorrenteIo();
-    const sezioni = portataCavoIo[0];
-    // const K1 = getFattoreInstallazione();
+    const Io = getCorrenteIo(sezioneAmmissibile);
+    const sezioni = tabellaPortataCavoIo[0];
+    const K1 = getFattoreInstallazione();
     // const K2 = getFattoreTemperatura();
     
     // const Iz = Io * K1 * K2
 
     // const result = Iz >= correnteDImpiego
   }
+
+  calcPortataLineaAmmissibile();
+
 }
 
 export default calcoloSezione;
