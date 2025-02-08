@@ -1,0 +1,21 @@
+/* import muriIsolantiPng from './images/Muri isolanti.png';
+import suParetePng from './images/Su parete.png'; */
+
+
+.su_parete {
+	background-image: url('https://picsum.photos/200');
+	/* background-position: left;
+	background-size: 60px; */
+	color: red;
+}
+
+.options-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://picsum.photos/200'); /* Percorso dell'immagine */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

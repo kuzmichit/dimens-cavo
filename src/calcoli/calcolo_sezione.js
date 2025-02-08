@@ -1,10 +1,11 @@
 import CDTUnitaria from '../tabelle/CDTUnitaria/CDTUnitaria';
 import tabellaPortataCavoIo from '../tabelle/Portata_cavo_Io/Portata_cavoIo';
 import tabellaFattoriInstallazione from '../tabelle/Fattore_installazione/Fattore_installazione';
+import tabellaFattoreTemperatura from '../tabelle/Fattore_temperatura/Fattore_temperatura';
 
 const calcoloSezione = (formData) => {
 
-  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa, numeroCircuitiAdiacenti} = {...formData};
+  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa, numeroCircuitiAdiacenti, temperaturaAmmissibile} = {...formData};
 
   let sezioneAmmissibile = 0;
 
@@ -33,10 +34,8 @@ const calcoloSezione = (formData) => {
         break;
       }
     }
-    console.log(sezioneAmmissibile);
-    
-    return sezioneAmmissibile;
 
+    return sezioneAmmissibile;
   }
 
   const getCorrenteIo = ( {sezione} ) => {
@@ -54,21 +53,30 @@ const calcoloSezione = (formData) => {
   }
 
   const getFattoreInstallazione = () => {
-    const fattoreInstallazione = tabellaFattoriInstallazione[numeroCircuitiAdiacenti]; debugger;
+    const fattoreInstallazione = tabellaFattoriInstallazione[numeroCircuitiAdiacenti];
 
     return fattoreInstallazione;
   }
 
+  const getFattoreTemperatura = () => {
+    const key = `${temperaturaAmmissibile}-${tipoIsolamento}`
+    const fattoreTemperatura = tabellaFattoreTemperatura[key]; debugger
+
+    return fattoreTemperatura;
+  }
+
   const calcPortataLineaAmmissibile = () => {
     const sezioneAmmissibile = getSezioneAmmissibile();
-    const Io = getCorrenteIo(sezioneAmmissibile);
-    const sezioni = tabellaPortataCavoIo[0];
-    const K1 = getFattoreInstallazione();
-    // const K2 = getFattoreTemperatura();
-    
-    // const Iz = Io * K1 * K2
-
-    // const result = Iz >= correnteDImpiego
+    do {
+      const Io = getCorrenteIo(sezioneAmmissibile);
+      const sezioni = tabellaPortataCavoIo[0];
+      const K1 = getFattoreInstallazione();
+      const K2 = getFattoreTemperatura();
+			
+      // Il calcolo della corrente che soddisfa dei fattori
+      const Iz = Io * K1 * K2; debugger;
+      // const result = (Iz >= correnteDImpiego) ? sezioneCalcolata : 
+    } while (Iz >= correnteDImpiego);
   }
 
   calcPortataLineaAmmissibile();
