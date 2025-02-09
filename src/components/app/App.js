@@ -22,7 +22,7 @@ function App() {
     tipoIsolamento: 'EPR',
     numeroConduttoriAttivi: 2,
     tipoPosa: 'A',
-    numeroCircuitiAdiacenti: 10,
+    numeroCircuitiAdiacenti: 1,
     temperaturaAmmissibile: 35,
     sezioneDefinitiva: 0
   } )
