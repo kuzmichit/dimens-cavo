@@ -1,15 +1,5 @@
 const CDTUnitaria = [
   {
-    'Sezione': '1.0mm²',
-    'DC': '45mV/A*m',
-    'AC-2P cosφ=1': '45mV/A*m',
-    'AC-2P cosφ=0.9': '40.6mV/A*m',
-    'AC-2P cosφ=0.8': '36.1mV/A*m',
-    'AC-3P cosφ=1': '39mV/A*m',
-    'AC-3P cosφ=0.9': '35.2mV/A*m',
-    'AC-3P cosφ=0.8': '31.3mV/A*m'
-  },
-  {
     'Sezione': '1.5mm²',
     'DC': '30.2mV/A*m',
     'AC-2P cosφ=1': '30.2mV/A*m',

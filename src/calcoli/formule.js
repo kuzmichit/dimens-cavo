@@ -25,3 +25,8 @@ export const calcCDTunitaria = (Uammissibile, Unom) => {
   return (Uammissibile * Unom)/ 100 
 }
 
+export const clickOnButton = (button) => {
+  const event = new Event('click');
+
+  button.dispatchEvent(event);
+}

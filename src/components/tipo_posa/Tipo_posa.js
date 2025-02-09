@@ -1,8 +1,11 @@
 import Form from 'react-bootstrap/Form';
 import calcoloSezione from '../../calcoli/calcolo_sezione';
 import './style.css';
+import useAutoClick from '../../calcoli/auto_click_hook';
 
 const TipoPosa = ( {formData, selectChangeHandler} ) => {
+
+  const buttonRef = useAutoClick(); 
 	
   const onCalcSezioneClick = () => {
     calcoloSezione(formData); // Passiamo formData come argomento
@@ -50,7 +53,7 @@ const TipoPosa = ( {formData, selectChangeHandler} ) => {
           </Form.Select>
         </Form.Group>
         <div className = "d-grid mt-5">
-          <button type = "button" 
+          <button type = "button" ref = { buttonRef }
             className = "btn btn-info w-75"
             onClick = { onCalcSezioneClick }>Calcolare la sezione</button>
         </div>

@@ -22,15 +22,15 @@ const calcoloSezione = (formData) => {
     const CDTammissibile = calcCDTammissibile();
     const keyForCDTUnitaria = `AC-${numeroConduttoriAttivi}P cosφ=${fattorePotenza}`;
     let indexSezioneAmmissibile = null;
-    const sezioneAmmissibile = {};
+    let sezioneAmmissibile = 0;
 
     for (let i = 0; i < CDTUnitaria.length; i++) {
 
       const item = CDTUnitaria[i]
       const CDT = parseFloat(item[keyForCDTUnitaria] )
       if(CDT < CDTammissibile) {
-        sezioneAmmissibile.index = i;
-        sezioneAmmissibile.sezione = item.Sezione;
+        // sezioneAmmissibile.index = i;
+        sezioneAmmissibile = item.Sezione;
         break;
       }
     }
@@ -38,7 +38,7 @@ const calcoloSezione = (formData) => {
     return sezioneAmmissibile;
   }
 
-  const getCorrenteIo = ( {sezione} ) => {
+  const getCorrenteIo = (sezione) => {
     // La sezione che abbiamo trovato prima 
     let sezioneCalcolata = parseFloat(sezione);
     let correnteIo = null;
@@ -60,23 +60,32 @@ const calcoloSezione = (formData) => {
 
   const getFattoreTemperatura = () => {
     const key = `${temperaturaAmmissibile}-${tipoIsolamento}`
-    const fattoreTemperatura = tabellaFattoreTemperatura[key]; debugger
+    const fattoreTemperatura = tabellaFattoreTemperatura[key];
 
     return fattoreTemperatura;
   }
 
-  const calcPortataLineaAmmissibile = () => {
+  const getSezioneAggiornata = (sezione, sezioni) => {
+    debugger;
+    let sezioneAggiornata = sezioni[sezioni.indexOf(parseFloat(sezione) ) + 1];
+
+    return sezioneAggiornata;
+  }
+
+  const calcPortataLineaAmmissibile = (sezione) => {
     const sezioneAmmissibile = getSezioneAmmissibile();
-    do {
-      const Io = getCorrenteIo(sezioneAmmissibile);
-      const sezioni = tabellaPortataCavoIo[0];
-      const K1 = getFattoreInstallazione();
-      const K2 = getFattoreTemperatura();
+    const sezionePerCalcoloIo = sezione ? sezione : sezioneAmmissibile;
+    const Io = getCorrenteIo(sezionePerCalcoloIo);
+    const sezioni = tabellaPortataCavoIo[0].sezioni;
+    const K1 = getFattoreInstallazione();
+    const K2 = getFattoreTemperatura();
+    
+    // Il calcolo della corrente che soddisfa dei fattori
+    const Iz = Io * K1 * K2; debugger;
+    const result = (Iz >= correnteDImpiego) ? sezionePerCalcoloIo : 
+      calcPortataLineaAmmissibile(getSezioneAggiornata(sezionePerCalcoloIo, sezioni) ) 
 			
-      // Il calcolo della corrente che soddisfa dei fattori
-      const Iz = Io * K1 * K2; debugger;
-      // const result = (Iz >= correnteDImpiego) ? sezioneCalcolata : 
-    } while (Iz >= correnteDImpiego);
+    return result;
   }
 
   calcPortataLineaAmmissibile();
