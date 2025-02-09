@@ -2,13 +2,12 @@ import Form from 'react-bootstrap/Form';
 import calcoloSezione from '../../calcoli/calcolo_sezione';
 import './style.css';
 import useAutoClick from '../../calcoli/auto_click_hook';
-import { useState } from 'react';
 
 const TipoPosa = ( {formData, selectChangeHandler} ) => {
 
-  const buttonRef = null//useAutoClick(); 
+  const buttonRef = useAutoClick(); 
   const {tipoPosa} = {...formData}
-  const contentPosaInterrata = tipoPosa === 'D' ? <PosaInterrata /> : null;
+  const contentPosaInterrata = tipoPosa === 'D' ? <PosaInterrata selectChangeHandler = { selectChangeHandler } /> : null;
 
   const onCalcSezioneClick = () => {
     calcoloSezione(formData); // Passiamo formData come argomento
@@ -80,11 +79,11 @@ const PosaInterrata = (selectChangeHandler) => {
       <Form.Select aria-label = "resistivita_termica"
         name = 'resistivitaTermica'
         onChange = { selectChangeHandler }>
-        <option value = "terreno2">Terreno con basso contenuto di umidità</option>
-        <option value = "terreno1">Terreno compatto con normale contenuto di umidità o argillosa</option>
-        <option value = "sabbia3">Sabbia asciutta</option>
-        <option value = "mattoni1,2">Mattoni</option>
-        <option value = "calcestruzzo1,1">Calcestruzzo</option>
+        <option value = "terreno-1">Terreno compatto con normale contenuto di umidità o argillosa</option>
+        <option value = "terreno-2">Terreno con basso contenuto di umidità</option>
+        <option value = "sabbia-3">Sabbia asciutta</option>
+        <option value = "mattoni-1,15">Mattoni</option>
+        <option value = "calcestruzzo-1,1">Calcestruzzo</option>
       </Form.Select>
     </Form.Group>
     <Form.Group className = "mb-3 mt-5 w-75">

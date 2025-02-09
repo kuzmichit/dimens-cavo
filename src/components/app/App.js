@@ -24,7 +24,10 @@ function App() {
     tipoPosa: 'A',
     numeroCircuitiAdiacenti: 1,
     temperaturaAmmissibile: 35,
-    sezioneDefinitiva: 0
+    sezioneDefinitiva: 0,
+    resistivitaTermica: 'terreno-2',
+    distanzaTraTubi: '2-contatto',
+    profonditaPosa: '0,5',
   } )
 
   const selectChangeHandler = (e) => {
