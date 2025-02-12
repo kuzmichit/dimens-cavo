@@ -42,8 +42,8 @@ const TipoCavo = ( {formData, setFormData, selectChangeHandler} ) => {
           <Form.Select aria-label = "tipo di isolamento"
             name = 'tipoIsolamento'
             onChange = { selectChangeHandler }>
-            <option value = "epr">EPR</option>
-            <option value = "pvc">PVC</option>
+            <option value = "EPR">EPR</option>
+            <option value = "PVC">PVC</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className = "mb-3 mt-5 w-75">

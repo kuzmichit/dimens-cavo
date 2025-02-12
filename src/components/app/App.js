@@ -16,17 +16,17 @@ function App() {
     potenza: '3600',
     fattorePotenza: 1,
     Uammissibile: 4,
-    correnteDImpiego: 15,
+    correnteDImpiego: 10,
     // correnteDImpiego: 'Non valida',
     formazione: 'unipolare',
-    tipoIsolamento: 'EPR',
+    tipoIsolamento: 'PVC',
     numeroConduttoriAttivi: 2,
     tipoPosa: 'A',
     numeroCircuitiAdiacenti: 1,
     temperaturaAmmissibile: 35,
     sezioneDefinitiva: 0,
     resistivitaTermica: 'terreno-2',
-    distanzaTraTubi: '2-contatto',
+    distanzaTraTubi: 'contatto',
     profonditaPosa: '0,5',
   } )
 
@@ -59,8 +59,8 @@ function App() {
         <h1 className = 'p-1  text-center fs-3'>Calcolo sezione dei cavi elettrici</h1>
       </header>
       <main className = 'main'>
-        {pages[2]}
-        {/* {pages[currentPage]} */}
+        {/* {pages[2]} */}
+        {pages[currentPage]}
       </main>
       <footer>
         <Buttons

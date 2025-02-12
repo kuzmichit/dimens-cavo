@@ -3,14 +3,16 @@ import calcoloSezione from '../../calcoli/calcolo_sezione';
 import './style.css';
 import useAutoClick from '../../calcoli/auto_click_hook';
 
-const TipoPosa = ( {formData, selectChangeHandler} ) => {
+const TipoPosa = ( {formData, selectChangeHandler, setFormData} ) => {
 
   const buttonRef = useAutoClick(); 
   const {tipoPosa} = {...formData}
   const contentPosaInterrata = tipoPosa === 'D' ? <PosaInterrata selectChangeHandler = { selectChangeHandler } /> : null;
 
   const onCalcSezioneClick = () => {
-    calcoloSezione(formData); // Passiamo formData come argomento
+    const sezioneDefinitiva = calcoloSezione(formData); 
+					
+    setFormData(prevState => ( {...prevState, sezioneDefinitiva: sezioneDefinitiva} ) );// Passiamo formData come argomento
   };
   
   return (
@@ -91,7 +93,7 @@ const PosaInterrata = (selectChangeHandler) => {
       <Form.Select aria-label = "distanza_tubi"
         name = 'distanzaTraTubi'
         onChange = { selectChangeHandler }>
-        <option value = "aContatto">A contatto</option>
+        <option value = "contatto">A contatto</option>
         <option value = "0,25">Distanziati 25cm</option>
       </Form.Select>
     </Form.Group>
