@@ -3,17 +3,18 @@
 */
 
 import Form from 'react-bootstrap/Form';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const TipoCavo = ( {formData, setFormData, selectChangeHandler} ) => {
 
-  const [stateConduttoriAttivi, setStateConduttoriAttivi] = useState(true)
+  const [stateConduttoriAttivi, setStateConduttoriAttivi] = useState(true);
+  const optionConduttori = useRef(null);
 
   const changeStateConduttoriAttivi = (e) => {
-    console.log(e.target.value);
     if(e.target.value === 'unipolare') {
       setStateConduttoriAttivi(true)
       setFormData( (prevState) => ( {...prevState, ['numeroConduttoriAttivi']: 2 } ) )
+      optionConduttori.current.value = '2';
     }
     else setStateConduttoriAttivi(false)
   }
@@ -51,6 +52,7 @@ const TipoCavo = ( {formData, setFormData, selectChangeHandler} ) => {
           <Form.Select aria-label = "numero di conduttori attivi" disabled = { stateConduttoriAttivi }
             name = 'numeroConduttoriAttivi'
             onChange = { selectChangeHandler }
+            ref = { optionConduttori }
           >
             <option value = "2">2</option>
             <option value = "3">3</option>

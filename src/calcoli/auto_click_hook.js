@@ -16,7 +16,7 @@ const useAutoClick = (delay = 0) => {
     
     return null;
   }
-  , [delay] );
+  , [FormData] );
 
   return buttonRef;
 };

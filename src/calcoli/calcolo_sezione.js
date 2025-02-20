@@ -8,7 +8,7 @@ import tabellaFattoreDistanzaTraTubi from '../tabelle/Fattore_distanza_tra_tubi'
 
 const calcoloSezione = (formData) => {
 
-  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa, numeroCircuitiAdiacenti, temperaturaAmmissibile, resistivitaTermica ,distanzaTraTubi, profonditaPosa, sezioneDefinitiva} = {...formData};
+  const {Uammissibile, Unom, correnteDImpiego, lunghezza,numeroConduttoriAttivi, fattorePotenza, tipoIsolamento, tipoPosa, numeroCircuitiAdiacenti, temperaturaAmmissibile, resistivitaTermica ,distanzaTraTubi, profonditaPosa} = {...formData};
 
   const calcCDTammissibile = ()=> {
 	
@@ -55,7 +55,7 @@ const calcoloSezione = (formData) => {
 
   const getFattoreInstallazione = () => {
     const fattoreInstallazione = tabellaFattoriInstallazione[numeroCircuitiAdiacenti];
-
+    
     return fattoreInstallazione;
   }
 
@@ -114,7 +114,6 @@ const calcoloSezione = (formData) => {
       const K1 = getFattoreInstallazione();
       Iz = Io * K1 * K2 
     }
-
     const result = Iz >= correnteDImpiego ? sezionePerCalcoloIo : 
       calcPortataLineaAmmissibile(getSezioneAggiornata(sezionePerCalcoloIo, sezioni) ) 
 

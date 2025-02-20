@@ -4,7 +4,8 @@ const Buttons = (props) => {
 
   const btnNext = useRef(null);
   const btnPrev = useRef(null);
-  const {correnteDImpiego, currentPage, setCurrentPage, pagesLength} = props;
+  const {currentPage, setCurrentPage, pagesLength} = props;
+  const {correnteDImpiego} = props.formData;
 
   const btnNextActive = (currentPage < pagesLength-1) && correnteDImpiego !== 'Non valida' && correnteDImpiego !== 0
   const btnNextHandler= () => {

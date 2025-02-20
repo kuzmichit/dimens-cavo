@@ -1,18 +1,33 @@
+/******  
+ * // todo aggiunger useEffect per contentPosaInterrata
+ * ******/
+
 import Form from 'react-bootstrap/Form';
 import calcoloSezione from '../../calcoli/calcolo_sezione';
 import './style.css';
-import useAutoClick from '../../calcoli/auto_click_hook';
+import { useEffect, useState } from 'react';
 
 const TipoPosa = ( {formData, selectChangeHandler, setFormData} ) => {
+	
+  const [activePosaInterrata, setActivePosaInterrata] = useState(false);
+  const {testoButtonCalcoloSezione, sezioneDefinitiva} = {...formData};
 
-  const buttonRef = useAutoClick(); 
-  const {tipoPosa} = {...formData}
-  const contentPosaInterrata = tipoPosa === 'D' ? <PosaInterrata selectChangeHandler = { selectChangeHandler } /> : null;
+  const changeTipoPosaHandler = (e) => {
+    if(e.target.value === 'D') setActivePosaInterrata(true);
+    else setActivePosaInterrata(false);
+    console.log(e.target.value);
+    selectChangeHandler(e);
+  }
 
+  const contentPosaInterrata = activePosaInterrata ? 
+    <PosaInterrata 
+      selectChangeHandler = { selectChangeHandler } 
+    /> : null;
   const onCalcSezioneClick = () => {
     const sezioneDefinitiva = calcoloSezione(formData); 
 					
-    setFormData(prevState => ( {...prevState, sezioneDefinitiva: sezioneDefinitiva} ) );// Passiamo formData come argomento
+    setFormData(prevState => ( {...prevState, sezioneDefinitiva, testoButtonCalcoloSezione: 'Calcolare un altra conduttura'} ) );
+
   };
   
   return (
@@ -23,7 +38,7 @@ const TipoPosa = ( {formData, selectChangeHandler, setFormData} ) => {
           <Form.Label className = 'ps-2 '>Tipo di posa</Form.Label>
           <Form.Select aria-label = "posa"
             name = 'tipoPosa'
-            onChange = { selectChangeHandler }>
+            onChange = { changeTipoPosaHandler }>
             <option value = "A">in tubi circolari entro muri isolanti o nella muratura</option>
             <option value = "B">su pareti o passerelle non perforate </option>
             <option value = "C">su passerelle perforate </option>
@@ -33,6 +48,7 @@ const TipoPosa = ( {formData, selectChangeHandler, setFormData} ) => {
             <option value = "G">conduttori nudi o cavi senza guaina su isolatori</option>          
           </Form.Select>
         </Form.Group>
+				
         {contentPosaInterrata}
 
         <Form.Group className = "mb-3 mt-5 w-75">
@@ -64,17 +80,17 @@ const TipoPosa = ( {formData, selectChangeHandler, setFormData} ) => {
           </Form.Select>
         </Form.Group>
         <div className = "d-grid mt-5">
-          <button type = "button" ref = { buttonRef }
-            className = "btn btn-info w-75"
-            onClick = { onCalcSezioneClick }>Calcolare la sezione</button>
+          <button type = "button"
+            className = "btn btn-info w-75 fs-3"
+            onClick = { onCalcSezioneClick }>{testoButtonCalcoloSezione}</button>
         </div>
       </Form>
-      {<p className = 'fs-2'>La sezione consigliata da posare è <span className = 'text-danger fs-1'>{formData.sezioneDefinitiva} </span>mmq </p>}
+      {<p className = 'mt-3 fs-2'>La sezione consigliata è <span className = 'text-danger fs-1'>{sezioneDefinitiva} </span>mmq </p>}
     </div>
   )
 }
 
-const PosaInterrata = (selectChangeHandler) => {
+const PosaInterrata = ( {selectChangeHandler} ) => {
   return (<>
     <Form.Group className = "mb-3 mt-5 w-75">
       <Form.Label className = 'ps-2 '>Resistivita termica</Form.Label>

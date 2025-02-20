@@ -12,22 +12,22 @@ function App() {
 
   const [formData, setFormData] = useState( {
     Unom: '230',
-    lunghezza: '10',
-    potenza: '3600',
+    lunghezza: '1',
+    potenza: '',
     fattorePotenza: 1,
     Uammissibile: 4,
-    correnteDImpiego: 10,
-    // correnteDImpiego: 'Non valida',
+    correnteDImpiego: 'Non valida',
     formazione: 'unipolare',
     tipoIsolamento: 'PVC',
     numeroConduttoriAttivi: 2,
     tipoPosa: 'A',
     numeroCircuitiAdiacenti: 1,
-    temperaturaAmmissibile: 35,
+    temperaturaAmmissibile: 30,
     sezioneDefinitiva: 0,
     resistivitaTermica: 'terreno-2',
     distanzaTraTubi: 'contatto',
     profonditaPosa: '0,5',
+    testoButtonCalcoloSezione: 'Calcolare la sezione',
   } )
 
   const selectChangeHandler = (e) => {
@@ -59,7 +59,6 @@ function App() {
         <h1 className = 'p-1  text-center fs-3'>Calcolo sezione dei cavi elettrici</h1>
       </header>
       <main className = 'main'>
-        {/* {pages[2]} */}
         {pages[currentPage]}
       </main>
       <footer>
@@ -67,8 +66,7 @@ function App() {
           formData = { formData }
           currentPage = { currentPage }
           setCurrentPage = { setCurrentPage }
-          pagesLength = { pages.length }
-          correnteDImpiego = { formData.correnteDImpiego } />
+          pagesLength = { pages.length }/>
       </footer>
     </div>
   );

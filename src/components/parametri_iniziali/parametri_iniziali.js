@@ -6,8 +6,6 @@ import {calcCorrenteDImpiego, isNumber} from '../../calcoli/formule';
 
 const ParametriIniziali = ( {formData, setFormData} ) => {
 
-  // const {formData, setFormData} = props;
-
   const formInputsHandler = (e) => {
     const {name, value} = e.target;
     if(!isNumber(value) && value !== '') return ;
